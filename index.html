@@ -47,6 +47,7 @@
 
         .info p {
             color: #555;
+            font-size: 20px;
             /* Gray text */
         }
 
@@ -106,19 +107,19 @@
                 for a UK-based and registered non-store online retail.</p>
         </div>
         <div class="info">
-            <h2>Source</h2>
-            <p><a href="http://archive.ics.uci.edu/dataset/352/online+retail" target="_blank">UCI Machine Learning
+            <h2>Source of Data</h2>
+            <p><a href="http://archive.ics.uci.edu/dataset/352/online+retail" target="_blank">🔗 UCI Machine Learning
                     Repository</a></p>
         </div>
         <div class="info">
             <h2>Cleaned Data Source</h2>
             <p><a href="https://www.kaggle.com/datasets/atanaskanev/online-retail-business-cleaned-dataset"
-                    target="_blank">Kaggle</a></p>
+                    target="_blank">🔗 Kaggle</a></p>
         </div>
         <div class="info">
             <h2>View whole source code</h2>
             <p><a href="https://github.com/harshrajshs/Data_visualization/blob/main/210150011.ipynb"
-                target="_blank">github link</a></p>
+                target="_blank">🔗 github link</a></p>
         </div>
         <div class="info">
             <h2>Data Sample</h2>
@@ -318,7 +319,7 @@
             </code></pre>
             </div>
             <iframe style="height: 500px;" src="line_plot.jpg" title="Sales by Country"></iframe>
-            <p><strong>Conclusion : </strong>We can see a clear upward trend with initial sharp increses towards the end
+            <p><strong>Conclusion : </strong>We can see a clear upward📈 trend with initial sharp increses towards the end
                 of 2010 and the beginning of 2011. Let's investigate whether the number of customers in each month
                 exhibit a similar trend.</p>
         </div>
@@ -469,15 +470,15 @@
                     )
             </code></pre>
             </div>
-            <p>We can check that invoices either have missing values for all CustomerIDs, or no CustomerIDs are missing.
+            <p>💡We can check that invoices either have missing values for all CustomerIDs, or no CustomerIDs are missing.
                 Since we do not know how many customers have an NaN value for CustomerID, we drop records with missing
                 CustomerIDs for this analysis.</p>
             <iframe style="height: 620px;" src="total Customers each month.html" title="Sales by Country"></iframe>
             <p><strong>Observations:</strong></p>
             <ul>
-                <li>We can see a significant jump in new customers around December 2010 and January 2011, likely related
+                <li>We can see a significant jump📈 in new customers around December 2010 and January 2011, likely related
                     to the Christmas holidays.</li>
-                <li>We can see another spike in customers in November 2011, although there is no spike in new customers.
+                <li>We can see another spike📈 in customers in November 2011, although there is no spike in new customers.
                     This might suggest that customers were satisfied with their Christmas purchases in 2010, and are now
                     coming back to the online store for their Christmas 2011 purchases.</li>
                 <li>We do infact see that the line chart of the number of total customers has a concave shape. In other
@@ -487,14 +488,14 @@
         </div>
         <div class="info">
             <h2>What Time During the Day Do Customers Make the Most Purchases?</h2>
-            <p><strong>Strategy:</strong></p>
+            <p><strong>Strategy 💡:</strong></p>
             <ul>
-                <li>We have seen spikes in sales around December 2010, which is likely related to the Christmas
+                <li style="font-size: 18px;">We have seen spikes in sales around December 2010, which is likely related to the Christmas
                     holidays. Since the last date of this dataset is December 2011 (which we assume is the present), we
                     expect that the business would be running marketing campaigns for this year's Christmas holidays as
                     well. Therefore, it would be useful to find out what time of day customers make the most purchases
                     in order to target the marketing campaigns around these times.</li>
-                <li>To check this, we can look at what time customers were making the most orders the previous December
+                <li style="font-size: 18px;">To check this, we can look at what time customers were making the most orders the previous December
                     (i.e. December 2010), as well as the most common hours for purchases during the last 2 months (i.e.
                     October and November 2011). Since we have data about 12 days of December 2011, we include these in
                     the analysis as well.</li>
@@ -638,7 +639,7 @@
         </div>
         <div class="info">
             <h2>Which are the Most Successful Products Overall?</h2>
-            <p>A characteristic we could use to answer this is: which products of relatively high price have sold
+            <p>💡A characteristic we could use to answer this is: which products of relatively high price have sold
                 relatively high quantities. This can be easily visualized with a scatter plot of all products with total
                 quantity sold and average unitprice on the x and y axes.
                 Products' markers to the north-east on the scatter plot suggest relatively high quantities sold at a
@@ -742,6 +743,7 @@
                 title="Sales by Country"></iframe>
         </div>
         <div class="info">
+            <p style="font-size: 25px; color: black; text-align: center;"><bold><strong>Created by ❤️Harsh Raj❤️</strong></bold></p>
             <p style="font-size: 20px; color: rgb(0, 0, 0); text-align: center; padding: 20px 0;">
                 <--------------------------------------------------------------------The End------------------------------------------------------------------->
             </p>
