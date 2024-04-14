@@ -739,11 +739,161 @@
                     cust_purchases.head(15) # first 15 only
             </code></pre>
             </div>
-            <iframe style="height: 410px;" src="most_contribution_of_customer_in_percentage.html"
+            <iframe style="height: 415px;" src="most_contribution_of_customer_in_percentage.html"
                 title="Sales by Country"></iframe>
         </div>
         <div class="info">
-            <p style="font-size: 25px; color: black; text-align: center;"><bold><strong>Created by ❤️Harsh Raj❤️</strong></bold></p>
+            <h2>We saw that the sales were increasing at relatively larger rate during october 2010 to january 2011 , Now we'll see that which product has made larger cotribution during this interval</h2>
+            <button onclick="toggleCode('code17')">View plotly Code</button>
+            <div id="code17" class="code-container">
+                <pre><code>
+                    # Step 1: Filter the dataframe
+                    filtered_data = data[(data['year'] == 2010) & (data['month'] >= 10) | (data['year'] == 2011) & (data['month'] <= 1)]
+                    # find total quantity sold and average unit price for all products
+                    products1 = filtered_data.groupby("Description") \
+                    .agg({"Quantity":"sum", "UnitPrice":"mean"}).reset_index()
+
+                    products1 = products1[products1["Description"].isin(["DOTCOM","Manual","Discount"]) == False] # remove for plotting
+                    trace = go.Scatter(
+                    x = products1["Quantity"],
+                    y = products1["UnitPrice"],
+                    customdata = products1["Description"],
+                    hovertemplate = "%{customdata}<br>Quantity Sold: %{x}<br>UnitPrice: £%{y:.2f}<br><extra></extra>",
+                    mode = "markers",
+                    name = "Products",
+                    line = dict(width = 4),
+                    marker = dict(
+                                  size = 10,
+                                  color = "#1199cf"
+                                 )
+                    )
+
+                    scatter_data = [trace]
+
+                    layout = dict(
+                                title = "Products",
+                                titlefont = dict(size = 20),
+                                margin=dict(l=10, r=50, b=10, t=70, pad=0),
+                                xaxis= dict(title= "Quantity Sold",ticklen = 5,zeroline = False),
+                                width=1000,  
+                                height=600,
+                                yaxis= dict(title= "Unit Price")
+                                )
+                    fig = dict(data = scatter_data, layout = layout)
+
+                    # Save the animation as an HTML file
+                    plot(fig, filename='most successful product overall2', auto_open=False)
+
+                    iplot(fig)
+
+            </code></pre>
+            </div>
+            <button onclick="toggleCode('code18')">View plotnine Code</button>
+            <div id="code18" class="code-container">
+                <pre><code>
+                    # Create a new DataFrame for tooltips
+                    tooltip_df = products1[['Description', 'Quantity', 'UnitPrice']]
+
+                    # Define the plot
+                    scatter_plot = (
+                        ggplot(products1, aes(x='Quantity', y='UnitPrice')) +
+                        geom_point(size=2, color="#1199cf") +
+                        labs(title="Products", x="Quantity Sold", y="Unit Price") +
+                        theme_minimal() +
+                        theme(
+                            plot_title=element_text(size=20),
+                            axis_text_x=element_text(size=10),
+                            axis_text_y=element_text(size=10)
+                        )
+                    )
+
+                    scatter_plot
+            </code></pre>
+            </div>
+            <iframe style="height: 640px;" src="most successful product overall.html"
+                title="Sales by Country"></iframe>
+            <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
+                <strong style="font-size: 20px;">Conclusion : </strong><strong>We can see that the same product <code>RAGENCY CAKESTAND 3 TIER</code> has again contributed the most. So, it's not like any Christmas-specific changed behavior on that single product.</strong>
+            </p>
+                
+        </div>
+        <div class="info">
+            <h2>As we know that in february month there is valentines day. So, let's see if we can find any product which is more specific to this</h2>
+            <button onclick="toggleCode('code19')">View plotly Code</button>
+            <div id="code19" class="code-container">
+                <pre><code>
+                    # Step 1: Filter the dataframe
+                    filtered_data = data[(data['month'] == 2) & data['Quantity']>0]
+                    # find total quantity sold and average unit price for all products
+                    products2 = filtered_data.groupby("Description") \
+                    .agg({"Quantity":"sum", "UnitPrice":"mean"}).reset_index()
+
+                    products2 = products2[products2["Description"].isin(["DOTCOM","Manual","Discount"]) == False] # remove for plotting
+                    trace = go.Scatter(
+                                        x = products2["Quantity"],
+                                        y = products2["UnitPrice"],
+                                        customdata = products2["Description"],
+                                        hovertemplate = "%{customdata}<br>Quantity Sold: %{x}<br>UnitPrice: £%{y:.2f}<br><extra></extra>",
+                                        mode = "markers",
+                                        name = "Products",
+                                        line = dict(width = 4),
+                                        marker = dict(
+                                                    size = 10,
+                                                    color = "#1199cf"
+                                                    )
+                                        )
+
+                    scatter_data = [trace]
+
+                    layout = dict(
+                                title = "Products",
+                                titlefont = dict(size = 20),
+                                margin=dict(l=10, r=50, b=10, t=70, pad=0),
+                                xaxis= dict(title= "Quantity Sold",ticklen = 5,zeroline = False),
+                                width=1000,  
+                                height=600,
+                                yaxis= dict(title= "Unit Price")
+                                )
+                    fig = dict(data = scatter_data, layout = layout)
+
+                    # Save the animation as an HTML file
+                    plot(fig, filename='most successful product overall3', auto_open=False)
+
+                    iplot(fig)
+            </code></pre>
+            </div>
+            <button onclick="toggleCode('code20')">View plotnine Code</button>
+            <div id="code20" class="code-container">
+                <pre><code>
+                    # Create a new DataFrame for tooltips
+                    tooltip_df = products2[['Description', 'Quantity', 'UnitPrice']]
+
+                    # Define the plot
+                    scatter_plot = (
+                        ggplot(products2, aes(x='Quantity', y='UnitPrice')) +
+                        geom_point(size=2, color="#1199cf") +
+                        labs(title="Products", x="Quantity Sold", y="Unit Price") +
+                        theme_minimal() +
+                        theme(
+                            plot_title=element_text(size=20),
+                            axis_text_x=element_text(size=10),
+                            axis_text_y=element_text(size=10)
+                        )
+                    )
+
+                    scatter_plot 
+            </code></pre>
+            </div>
+            <iframe style="height: 640px;" src="most successful product overall3.html"
+                title="Sales by Country"></iframe>
+            <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
+                <bold style="font-size: 20px;"><strong>Conclusion : </strong></bold><strong>We can see that the products such as <code>WRAP ENGLISH ROSE</code>, <code>GINGHAM ROSE WRAP</code>, <code>WRAP PINK FAIRY CAKES</code>, <code>SET OF 3 CAKE TINS PANTRY DESIGN</code> are relatively sold in higher quantity. So, during this month, the marketing team can target these types of customers to sell products.</strong>
+            </p>
+                
+        </div>
+        
+        <div class="info">
+            <p style="font-size: 25px; color: black; text-align: center;"><bold><strong>Created by Harsh Raj</strong></bold></p>
             <p style="font-size: 20px; color: rgb(0, 0, 0); text-align: center; padding: 20px 0;">
                 <--------------------------------------------------------------------The End------------------------------------------------------------------->
             </p>
